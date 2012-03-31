@@ -1,0 +1,39 @@
+{% extends "bootstrap_base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="container">
+	        {% for key in chartData.keys %}
+		    	<div id="{{ key }}_chart" class="span5"></div>
+	        {% endfor %}
+	        <div id="messages" class="span12 well">
+	        {% for msg in messages %}
+	        	{{ msg.date }} - {{ msg.count }} - {{ msg.message }}<br>
+	        {% endfor %}
+	        </div>
+</div>
+{% endblock %}
+
+{% block custom_javascript %}
+      <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawCharts);
+      function drawCharts() {
+        {% for key,value in chartData.items %}
+        	// properties on chart {{ chart }}
+        	var data = new google.visualization.DataTable();
+        	data.addColumn('datetime', 'Year');
+        	data.addColumn('number', '{{ key }}');
+        	data.addRows([
+        		{{ value }}
+        	]);
+	        var options = {
+    	      height: 240, //width: 240, 
+        	  title: '{{ key }}'
+        	};
+        	var chart = new google.visualization.LineChart(document.getElementById('{{ key }}_chart'));
+        	chart.draw(data, options);
+        {% endfor %}
+      }
+    </script>  
+{% endblock %}

@@ -1,0 +1,1 @@
+10 * * * * www-data shush -k -c /srv/techquiz/config/shush awstats_cronjob_config

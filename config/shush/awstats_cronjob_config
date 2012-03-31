@@ -1,0 +1,7 @@
+command=/usr/lib/cgi-bin/awstats.pl -config=techquiz.aptive.net -update
+sendmail=/usr/sbin/sendmail
+format=text
+Subject=techquiz awstats cronjob error
+to=your_email_goes_here@gmail.com
+[readers]
+if=$exit != 0

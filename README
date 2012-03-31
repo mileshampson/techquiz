@@ -1,0 +1,13 @@
+
+Deployment software requirements:
+Ubuntu 11.10
+Python
+Django 1.3
+Mongodb
+Apache2
+AWstats
+Shush
+
+Development software environment:
+Git
+Eclipse
