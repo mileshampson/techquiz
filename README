@@ -14,3 +14,35 @@ Eclipse
 
 Where to get questions from:
 http://www.commandlinefu.com/commands/browse/sort-by-votes
+
+Who wants to be a millionaire quesionts
+$100 - What makes a good name for an open source project?
+            A) The name should start with a letter early in the alphabet to ensure it appears early in alphabetical lists of apps and gets more visibility.
+            B) The name should be meaningful, an acid test is to ask people to guess the functionality just from the name.
+            C) The name should be catchy and fun to pronounce.
+            D) Any 2 of A,B,C are sufficient.
+
+$500 - How to make techquiz scalable?
+                A) Most of the techquiz processing needs to be in the client application.
+                B) Client should cache up to N questions even before they are asked, and each question should include the answer and explanation.
+                C) Techquiz should use some form of distributed database to store the quiz questions and user data.
+                D) The architecture needs to be scalable, initial architecture should support 10,000 user read requests per minute.
+
+$1,000 -  How to store multiple choice questions in a shared repository for an open source project, and protect the data against vandalism and allow modification from multiple sources?
+               A) Keep the data private and implement similar crow sourcing control mechanisms as wikipedia
+               B) Make the data public hosted on github.com and allow software to check in changes
+               C) Host data
+ 
+$5,000 - For an open source project hosted on github, how do you manage runtime collective data. (Note: the project is only useful if the data is collective)
+                A) Host data on your home server, use donations to cover costs of running server and internet connection.
+                B) Host data in the cloud, use donations to cover costs of cloud cpu, disk and network usage.
+                C) Use an existing collective data database, similar to torrent.
+                D) Write a collective data database.
+  
+$10,000 - What methods can be used to gain critical mass of adopters that would make the techquiz opensource project valuable.
+                A) Write an interesting post on ycombinator.
+                B) Contact well know IT bloggers and ask for a mention.
+                C) Pay for advertising of techquiz to be displayed on stackoverflow and related IT sites.
+                D) Create a youtube video demonstrating techquiz.
+                E) All of the above
+ 
