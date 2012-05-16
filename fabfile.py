@@ -2,8 +2,8 @@ from __future__ import with_statement
 from fabric.api import *
 from fabric.contrib.files import exists
 
-env.hosts = ['devbox']
-#env.password = 'your password goes here'
+env.hosts = ['prodbox']
+# env.password = 'your password goes here'
 project_tgz = 'techquiz.tgz'
 install_path = '/srv/techquiz/'
 apache2_config = 'techquiz.aptive.net'
@@ -16,7 +16,8 @@ def deploy():
     put(project_tgz, '/tmp/')
     local('rm '+project_tgz)
     if not exists(install_path):
-        sudo("mkdir -p "+install_path, user="www-data")
+        sudo("mkdir -p "+install_path)
+        sudo("chown www-data "+install_path)
     with cd(install_path):
         sudo("tar xzf /tmp/"+project_tgz, user="www-data")
         if not exists("log"):

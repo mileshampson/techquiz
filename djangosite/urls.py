@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'djangosite.views.index'),
+    url(r'^new$', 'djangosite.views.new'),
     url(r'^statistics$', 'djangosite.views.statistics'),
     url(r'^admin$', 'djangosite.views.admin'),
     #url(r'^geolocation$', 'djangosite.views.geolocation'),

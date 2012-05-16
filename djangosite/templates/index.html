@@ -3,7 +3,36 @@
 
 {% block content %}
 <div  class="container">
-	Tada
+  	{% if question %}
+	  	<div class="btn-group pull-right">
+	  		<a class="btn" href="/new">New</a>
+	  		<button class="btn">Edit</button>
+	  		<button class="btn">Delete</button>
+	  		<button class="btn">Next</button>
+	  	</div>
+	 	<h2>Question {{ question.id }}</h2>
+		<div class="hero-unit">
+		  	<p>{{ question.stem }}</p>
+		  	<br>
+		  	<p>
+		    	<a class="btn">
+		      		{{ question.key }}
+		    	</a>
+		    </p>
+		  	{% for distractor in question.distractors %}
+			  	<p>
+			    	<a class="btn">
+			      		{{ distractor }}
+			    	</a>
+			    </p>
+			{% endfor %}
+		</div>
+	{% else %}
+		<div class="alert">
+	  		<strong>Warning!</strong> There are no questions in the system, you better hit that New button.
+	  		<a class="btn" href="/new">New</a>
+		</div>
+	{% endif %}
 </div>
 {% endblock %}
 
