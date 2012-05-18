@@ -1,0 +1,47 @@
+{% extends "bootstrap_base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div  class="container">
+	<h2>Edit Question</h2><br>
+	<form class="form-horizontal" method="post">{% csrf_token %}
+		<input type="hidden" name="qid" value="{{ qid }}">
+		<fieldset>
+		<div class="control-group">
+			<label class="control-label" for="stem">Question</label>
+			<div class="controls">
+        		<textarea type="textarea" rows="5" class="input-xlarge" id="stem" name="stem" placeholder="A question asked of the respondent">{{ question.stem }}</textarea>
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="key">Correct option</label>
+			<div class="controls">
+        		<input type="text" class="input-xlarge" id="key" name="key" placeholder="Correct answer" value="{{ question.key }}">
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="distractor1">Incorrect option</label>
+			<div class="controls">
+        		<input type="text" class="input-xlarge" id="distractor1" name="distractor1" placeholder="First incorrect answer" value="{{ question.distractors.0 }}">
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="distractor2">Incorrect option</label>
+			<div class="controls">
+        		<input type="text" class="input-xlarge" id="distractor2" name="distractor2" placeholder="Second incorrect answer" value="{{ question.distractors.1 }}">
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="distractor3">Incorrect option</label>
+			<div class="controls">
+        		<input type="text" class="input-xlarge" id="distractor3" name="distractor3" placeholder="Third incorrect answer" value="{{ question.distractors.2 }}">
+        	</div>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Save Changes</button>
+		</div>
+		</fieldset>
+	</form>
+</div>
+{% endblock %}
+

@@ -14,11 +14,21 @@ def admin(request):
     c = Context(ctxdata)
     return HttpResponse(t.render(c))
 
-def index(request):
+@never_cache
+def index(request, qid=0):
     t = loader.get_template('index.html')
-    c = Context({"question":distdata.questions.getQuestion()})
-    return HttpResponse(t.render(c))
+    ctxdata = {}
+    qid = int(qid)
+    question = distdata.questions.getQuestion(qid)
+    ctxdata["question"] = question
+    if question:
+        qid = question["_id"]
+    ctxdata["qid"] = qid
+    ctxdata["prevqid"] = qid - 1
+    ctxdata["nextqid"] = qid + 1
+    return HttpResponse(t.render(Context(ctxdata)))
 
+@never_cache
 def new(request):
     if request.method == 'GET':
         t = loader.get_template('new.html')
@@ -33,7 +43,35 @@ def new(request):
         distractors.append(request.REQUEST["distractor3"])
         distdata.questions.addNewQuestion(stem, key, distractors)
         return redirect("/")
-    
+
+@never_cache
+def edit(request):
+    if request.method == 'GET':
+        t = loader.get_template('edit.html')
+        qid = int(request.REQUEST["qid"])
+        ctxdata = {}
+        ctxdata["question"] = distdata.questions.getQuestion(qid)
+        ctxdata["qid"] = qid
+        c = RequestContext(request, ctxdata)
+        return HttpResponse(t.render(c))
+    else:
+        qid = int(request.REQUEST["qid"])
+        stem = request.REQUEST["stem"]
+        key = request.REQUEST["key"]
+        distractors = []
+        distractors.append(request.REQUEST["distractor1"])
+        distractors.append(request.REQUEST["distractor2"])
+        distractors.append(request.REQUEST["distractor3"])
+        distdata.questions.updateQuestion(qid, stem, key, distractors)
+        return redirect("/"+str(qid))
+
+@never_cache
+def delete(request):
+    if request.method == 'GET':
+        qid = int(request.REQUEST["qid"])
+        distdata.questions.deleteQuestion(qid)
+        return redirect("/"+str(qid))
+
 def statistics(request):
     t = loader.get_template('statistics.html')
     c = Context({ "messages":distdata.messages.get_messages() })

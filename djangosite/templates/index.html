@@ -3,13 +3,27 @@
 
 {% block content %}
 <div  class="container">
+  	<div class="btn-group pull-right">
+  		<a class="btn" href="/new">New</a>
+  		{% if qid %}
+  			<a class="btn" href="/edit?qid={{ qid }}">Edit</a>
+	  		<a class="btn" href="/delete?qid={{ qid }}">Delete</button>
+	  	{% else %}
+  			<a class="btn disabled">Edit</a>
+	  		<a class="btn disabled">Delete</button>	  		
+  		{% endif %}
+  		{% if prevqid %}
+  			<a class="btn" href="/{{ prevqid }}">Previous</a>
+  		{% else %}
+  			<a class="btn disabled"">Previous</a>
+  		{% endif %}
+  		{% if nextqid %}
+  			<a class="btn" href="/{{ nextqid }}">Next</a>
+  		{% else %}
+  			<a class="btn disabled">Next</a>
+  		{% endif %}
+  	</div>
   	{% if question %}
-	  	<div class="btn-group pull-right">
-	  		<a class="btn" href="/new">New</a>
-	  		<button class="btn">Edit</button>
-	  		<button class="btn">Delete</button>
-	  		<button class="btn">Next</button>
-	  	</div>
 	 	<h2>Question {{ question.id }}</h2>
 		<div class="hero-unit">
 		  	<p>{{ question.stem }}</p>
@@ -29,9 +43,8 @@
 		</div>
 	{% else %}
 		<div class="alert">
-	  		<strong>Warning!</strong> There are no questions in the system, you better hit that New button.
-	  		<a class="btn" href="/new">New</a>
-		</div>
+	  		<strong>Warning!</strong> Question {{ qid }} does not exist.
+		</div>		
 	{% endif %}
 </div>
 {% endblock %}
