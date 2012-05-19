@@ -19,7 +19,7 @@ def get_messages():
 # internals
 
 def __getMessagesCollection():
-    return distdata.connection.__getDbConnection().messages
+    return distdata.connection.getTechquizDb().messages
 
 if __name__ == '__main__':
     for entry in get_messages():

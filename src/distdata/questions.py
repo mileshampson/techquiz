@@ -1,5 +1,5 @@
 import distdata.connection
-
+import simplejson
 #
 # terminology derived from http://en.wikipedia.org/wiki/Multiple_choice
 #
@@ -24,6 +24,15 @@ def updateQuestion(qid, stem, key, distractors):
     
 def deleteQuestion(qid):
     __getQuestionsCollection().remove({"_id":qid})
+
+# this may be done using mongodump and bsondump, but bsondump is not available in my mongodb version
+def export(filename):
+    questionList = []
+    for question in __getQuestionsCollection().find():
+        questionList.append(question)
+    fd = open(filename, 'w')
+    simplejson.dump(questionList, fd, indent=True)
+    fd.close()
     
 def __getQuestionsCollection():
     return distdata.connection.getTechquizDb().questions 
