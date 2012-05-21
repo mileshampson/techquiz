@@ -2,6 +2,11 @@
 {% load humanize %}
 
 {% block content %}
+<style>
+.nav > li > a:hover {
+	  background-color: #dddddd;
+}
+</style>
 <div  class="container">
   	<div class="btn-group pull-right">
   		<a class="btn" href="/new">New</a>
@@ -24,22 +29,12 @@
   		{% endif %}
   	</div>
   	{% if question %}
+  	
 	 	<h2>Question {{ question.id }}</h2>
 		<div class="hero-unit">
 		  	<p>{{ question.stem }}</p>
 		  	<br>
-		  	<p>
-		    	<a class="btn">
-		      		{{ question.key }}
-		    	</a>
-		    </p>
-		  	{% for distractor in question.distractors %}
-			  	<p>
-			    	<a class="btn">
-			      		{{ distractor }}
-			    	</a>
-			    </p>
-			{% endfor %}
+		  	<div id="options"></div>
 		</div>
 	{% else %}
 		<div class="alert">
@@ -49,3 +44,11 @@
 </div>
 {% endblock %}
 
+{% block custom_javascript %}
+	<script type="text/javascript">
+		{% autoescape off %}
+		question = {{ question_json }};
+		{% endautoescape %} 
+	</script>
+	<script type="text/javascript" src="/static/src/index.js"></script>
+{% endblock %}

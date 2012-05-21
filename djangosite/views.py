@@ -21,6 +21,7 @@ def index(request, qid=0):
     qid = int(qid)
     question = distdata.questions.getQuestion(qid)
     ctxdata["question"] = question
+    ctxdata["question_json"] = simplejson.dumps(question)
     if question:
         qid = question["_id"]
     ctxdata["qid"] = qid
