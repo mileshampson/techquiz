@@ -14,6 +14,12 @@ def admin(request):
     c = Context(ctxdata)
     return HttpResponse(t.render(c))
 
+def category_select(request):
+    t = loader.get_template('category_select.html')
+    ctxdata = {}
+    c = Context(ctxdata)
+    return HttpResponse(t.render(c))
+
 @never_cache
 def index(request, qid=0):
     t = loader.get_template('index.html')
