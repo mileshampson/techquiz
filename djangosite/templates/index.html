@@ -18,12 +18,12 @@
 	  		<a class="btn disabled">Delete</button>	  		
   		{% endif %}
   		{% if prevqid %}
-  			<a class="btn" href="/{{ prevqid }}">Previous</a>
+  			<a class="btn" href="/questions/{{ prevqid }}">Previous</a>
   		{% else %}
   			<a class="btn disabled"">Previous</a>
   		{% endif %}
   		{% if nextqid %}
-  			<a class="btn" href="/{{ nextqid }}">Next</a>
+  			<a class="btn" href="/questions/{{ nextqid }}">Next</a>
   		{% else %}
   			<a class="btn disabled">Next</a>
   		{% endif %}

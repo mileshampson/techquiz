@@ -3,7 +3,7 @@ from fabric.api import *
 from fabric.contrib.files import exists
 
 env.hosts = ['prodbox']
-env.password = 'nin90nin'
+# env.password = 'your password goes here'
 project_tgz = 'techquiz.tgz'
 install_path = '/srv/techquiz/'
 apache2_config = 'techquiz.aptive.net'

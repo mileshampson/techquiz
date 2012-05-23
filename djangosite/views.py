@@ -20,6 +20,12 @@ def category_select(request):
     c = Context(ctxdata)
     return HttpResponse(t.render(c))
 
+def about(request):
+    t = loader.get_template('about.html')
+    ctxdata = {}
+    c = Context(ctxdata)
+    return HttpResponse(t.render(c))
+
 @never_cache
 def index(request, qid=0):
     t = loader.get_template('index.html')
@@ -49,7 +55,7 @@ def new(request):
         distractors.append(request.REQUEST["distractor2"])
         distractors.append(request.REQUEST["distractor3"])
         distdata.questions.addNewQuestion(stem, key, distractors)
-        return redirect("/")
+        return redirect("/questions")
 
 @never_cache
 def edit(request):
@@ -70,14 +76,14 @@ def edit(request):
         distractors.append(request.REQUEST["distractor2"])
         distractors.append(request.REQUEST["distractor3"])
         distdata.questions.updateQuestion(qid, stem, key, distractors)
-        return redirect("/"+str(qid))
+        return redirect("/questions/"+str(qid))
 
 @never_cache
 def delete(request):
     if request.method == 'GET':
         qid = int(request.REQUEST["qid"])
         distdata.questions.deleteQuestion(qid)
-        return redirect("/"+str(qid))
+        return redirect("/questions/"+str(qid))
 
 def statistics(request):
     t = loader.get_template('statistics.html')
