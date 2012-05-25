@@ -41,6 +41,17 @@ def index(request, qid=0):
     ctxdata["nextqid"] = qid + 1
     return HttpResponse(t.render(Context(ctxdata)))
 
+def __getPromRequest(request):
+    stem = request.REQUEST["stem"]
+    key = request.REQUEST["key"]
+    distractors = []
+    distractors.append(request.REQUEST["distractor1"])
+    distractors.append(request.REQUEST["distractor2"])
+    distractors.append(request.REQUEST["distractor3"])
+    explanation = request.REQUEST["explanation"]
+    tags = request.REQUEST["tags"].split(None, 5)
+    return (title, stem, key, distractors, explanation, topic_link, tags)
+
 @never_cache
 def new(request):
     if request.method == 'GET':
@@ -48,13 +59,8 @@ def new(request):
         c = RequestContext(request, {})
         return HttpResponse(t.render(c))
     else:
-        stem = request.REQUEST["stem"]
-        key = request.REQUEST["key"]
-        distractors = []
-        distractors.append(request.REQUEST["distractor1"])
-        distractors.append(request.REQUEST["distractor2"])
-        distractors.append(request.REQUEST["distractor3"])
-        distdata.questions.addNewQuestion(stem, key, distractors)
+        (stem, key, distractors, explanation, tags) = __getPromRequest(request)
+        distdata.questions.addNewQuestion(stem, key, distractors, explanation, tags)
         return redirect("/questions")
 
 @never_cache
@@ -69,13 +75,8 @@ def edit(request):
         return HttpResponse(t.render(c))
     else:
         qid = int(request.REQUEST["qid"])
-        stem = request.REQUEST["stem"]
-        key = request.REQUEST["key"]
-        distractors = []
-        distractors.append(request.REQUEST["distractor1"])
-        distractors.append(request.REQUEST["distractor2"])
-        distractors.append(request.REQUEST["distractor3"])
-        distdata.questions.updateQuestion(qid, stem, key, distractors)
+        (stem, key, distractors, explanation, tags) = __getPromRequest(request)
+        distdata.questions.updateQuestion(qid, stem, key, distractors, explanation, tags)
         return redirect("/questions/"+str(qid))
 
 @never_cache

@@ -14,12 +14,12 @@ def getQuestion(qid=0):
     else:
         return __getQuestionsCollection().find_one({"_id":qid})
 
-def addNewQuestion(stem, key, distractors):
-    bson = __encodeQuestion(distdata.connection.counterIncAndGet("questions"), stem, key, distractors)
+def addNewQuestion(stem, key, distractors, explanation, tags):
+    bson = __encodeQuestion(distdata.connection.counterIncAndGet("questions"), stem, key, distractors, explanation, tags)
     __getQuestionsCollection().save(bson)
 
-def updateQuestion(qid, stem, key, distractors):
-    bson = __encodeQuestion(qid, stem, key, distractors)
+def updateQuestion(qid, stem, key, distractors, explanation, tags):
+    bson = __encodeQuestion(qid, stem, key, distractors, explanation, tags)
     __getQuestionsCollection().save(bson)
     
 def deleteQuestion(qid):
@@ -33,16 +33,40 @@ def export(filename):
     fd = open(filename, 'w')
     simplejson.dump(questionList, fd, indent=True)
     fd.close()
-    
-def __getQuestionsCollection():
-    return distdata.connection.getTechquizDb().questions 
 
-def __encodeQuestion(qid, stem, key, distractors):
+def importQuestions(host, filename):
+    fd = open(filename, 'r')
+    questionList = simplejson.load(fd)
+    fd.close()
+    for question in questionList:
+        # mandatory fields
+        stem = question["stem"]
+        key = question["key"]
+        distractors = question["distractors"]
+        # recently introduced or optional fields
+        if "explanation" in question:
+            explanation =  question["explanation"]
+        else:
+            explanation = ""
+        if "tags" in question:
+            tags =  question["tags"]
+        else:
+            tags = []
+        bson = __encodeQuestion(distdata.connection.counterIncAndGet("questions", host), stem, key, 
+                            distractors, explanation, tags)
+        __getQuestionsCollection(host).save(bson)   
+    
+def __getQuestionsCollection(host='localhost'):
+    return distdata.connection.getTechquizDb(host).questions 
+
+def __encodeQuestion(qid, stem, key, distractors, explanation, tags):
     bson = {
             "_id": qid,
             "stem": stem,
             "key": key, 
             "distractors":distractors,
+            "explanation":explanation,
+            "tags":tags,
                 }
     return bson
 

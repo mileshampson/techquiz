@@ -8,9 +8,10 @@
 		<input type="hidden" name="qid" value="{{ qid }}">
 		<fieldset>
 		<div class="control-group">
+		<div class="control-group">
 			<label class="control-label" for="stem">Question</label>
 			<div class="controls">
-        		<textarea type="textarea" rows="5" class="input-xlarge" id="stem" name="stem" placeholder="A question asked of the respondent">{{ question.stem }}</textarea>
+        		<textarea type="textarea" rows="5" class="input-xlarge" id="stem" name="stem" placeholder="a question asked of the respondent">{{ question.stem }}</textarea>
         	</div>
 		</div>
 		<div class="control-group">
@@ -35,6 +36,18 @@
 			<label class="control-label" for="distractor3">Incorrect option</label>
 			<div class="controls">
         		<input type="text" class="input-xlarge" id="distractor3" name="distractor3" placeholder="Third incorrect answer" value="{{ question.distractors.2 }}">
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="explanation">Explanation</label>
+			<div class="controls">
+        		<textarea type="textarea" rows="5" class="input-xlarge" id="explanation" name="explanation" placeholder="explain the correct answer">{{ question.explanation }}</textarea>
+        	</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="tags">Tags</label>
+			<div class="controls">
+        		<input type="text" class="input-xlarge" id="tags" name="tags" placeholder="at least one tag, max 5 tags" value="{{ question.tags }}">
         	</div>
 		</div>
 		<div class="form-actions">

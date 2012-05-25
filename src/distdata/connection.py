@@ -1,17 +1,17 @@
 import pymongo
 import os
 
-def getConnection():
+def getConnection(host='localhost'):
     global __connection
     if __connection is None:
-        __connection = pymongo.Connection()
+        __connection = pymongo.Connection(host)
     return __connection
     
-def getTechquizDb():
-    return getConnection()['techquiz']
+def getTechquizDb(host='localhost'):
+    return getConnection(host)['techquiz']
 
-def counterIncAndGet(name):
-    ret = getTechquizDb().counters.find_and_modify(query={"_id":name},update={"$inc" : {"next":1}}, upsert=True, new=True )
+def counterIncAndGet(name, host='localhost'):
+    ret = getTechquizDb(host).counters.find_and_modify(query={"_id":name},update={"$inc" : {"next":1}}, upsert=True, new=True )
     return ret["next"]
 
 
