@@ -11,7 +11,7 @@ def _getBasePath():
 if __name__ == '__main__':
     # copy prod database to dev database
     print "copying techquiz database"
-    result = distdata.connection.getConnection().copy_database('techquiz', 'techquiz', 'devbox')
+    result = distdata.connection.getConnection().copy_database('techquiz', 'techquiz', 'prodbox')
     print result
     filename = _getBasePath()+"/questions.json"
     print "exporting techquiz.questions to "+filename

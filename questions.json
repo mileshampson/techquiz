@@ -1,33 +1,45 @@
 [
  {
-  "_id": 1,
-  "stem": "What character terminates all character array strings ",
+  "tags": [
+   "C",
+   "C++"
+  ],
+  "explanation": "A null terminated string is a an array containing characters and terminated with a null character '\\0' also called NUL in ASCII.",
+  "stem": "What character terminates all character array C strings?",
   "key": "\\0",
   "distractors": [
    ".",
    "\\END",
-   "<end>"
-  ]
+   "\\D"
+  ],
+  "_id": 1
  },
  {
-  "_id": 2,
+  "tags": [],
+  "explanation": "",
   "stem": "This mostly happens in time sharing systems in which the process which requires a resource is waiting for another process to finish and to release the resources, but the other process holding the resources for long time (almost for forever) and the process that requires small time slot goes on waiting. Such situation is called?",
   "key": "Starvation",
   "distractors": [
    "Deadlock",
    "Excesive context switching",
    "Race condition"
-  ]
+  ],
+  "_id": 2
  },
  {
-  "_id": 3,
+  "tags": [
+   "java",
+   "c",
+   "c++"
+  ],
+  "explanation": "A single precision float is represented by 1 sign bit, 8 exponent bits and 23 fraction bits.Total precision is 23+1 = 24 bits, which is equivalent to 7.23 decimal digits. For more detail see http://en.wikipedia.org/wiki/Single_precision_floating-point_format",
   "stem": "What number of digits that can be accurately stored in a float (based on the IEEE Standard 754) ",
-  "id": 3,
   "key": "6",
   "distractors": [
    "32",
    "38",
    "unlimited"
-  ]
+  ],
+  "_id": 3
  }
 ]

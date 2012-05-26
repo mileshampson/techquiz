@@ -50,7 +50,7 @@ def __getPromRequest(request):
     distractors.append(request.REQUEST["distractor3"])
     explanation = request.REQUEST["explanation"]
     tags = request.REQUEST["tags"].split(None, 5)
-    return (title, stem, key, distractors, explanation, topic_link, tags)
+    return (stem, key, distractors, explanation, tags)
 
 @never_cache
 def new(request):
@@ -81,10 +81,12 @@ def edit(request):
 
 @never_cache
 def delete(request):
-    if request.method == 'GET':
-        qid = int(request.REQUEST["qid"])
-        distdata.questions.deleteQuestion(qid)
-        return redirect("/questions/"+str(qid))
+#    if request.method == 'GET':
+#        qid = int(request.REQUEST["qid"])
+#        distdata.questions.deleteQuestion(qid)
+#        return redirect("/questions/"+str(qid))
+    t = loader.get_template('delete.html')
+    return HttpResponse(t.render(Context({})))
 
 def statistics(request):
     t = loader.get_template('statistics.html')
