@@ -8,6 +8,9 @@ import simplejson
 # question.key             <- correct answer
 # question.distractors[]   <- incorrect options
 
+def getQuestionGivenTag(tag):
+    return __getQuestionsCollection().find_one({"tags":tag})
+
 def getQuestion(qid=0):
     if qid == 0:
         return __getQuestionsCollection().find_one()
@@ -60,6 +63,8 @@ def __getQuestionsCollection(host='localhost'):
     return distdata.connection.getTechquizDb(host).questions 
 
 def __encodeQuestion(qid, stem, key, distractors, explanation, tags):
+    # convert tags to lower case
+    tags = [x.lower() for x in tags]
     bson = {
             "_id": qid,
             "stem": stem,

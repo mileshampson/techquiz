@@ -1,0 +1,30 @@
+{% extends "bootstrap_base.html" %}
+
+{% block custom_css %}
+	<link href="/static/css/quiz.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<style>
+.nav > li > a:hover {
+	  background-color: #dddddd;
+}
+</style>
+<div  class="container">
+	<h2>{{tag|capfirst}} quiz</h2>
+	<div id="question_or_answer" class="hero-unit">
+	</div>
+</div>
+{% endblock %}
+
+{% block custom_javascript %}
+	<script type="text/javascript">
+		qid = {{ qid }};
+		tag = "{{ tag }}";
+		{% autoescape off %}
+		question = {{ question_json }};
+		{% endautoescape %} 
+	</script>
+	<script type="text/javascript" src="/static/src/quiz.js"></script>
+{% endblock %}

@@ -16,38 +16,16 @@
 			</div>		
 			<div class="row">
 				<div class="span7 offset1" data-toggle="buttons-radio">
-					<div class="span2">
-						<p>
-						<button class="btn tag-button active">
-							<h3>Java</h3>
-							<p>3 questions</p>
-						</button><br>
-						</p>
-					</div>	
-					<div class="span2">
-						<p>
-						<button class="btn tag-button">
-							<h3>C</h3>
-							<p>2 questions</p>
-						</button>
-						</p>
-					</div>	
-					<div class="span2">
-						<p>
-						<button class="btn tag-button">
-							<h3>C++</h3>
-							<p>2 questions</p>
-						</button>
-						</p>
-					</div>	
-					<div class="span2">
-						<p>
-						<button class="btn tag-button">
-							<h3>Linux</h3>
-							<p>2 questions</p>
-						</button>
-						</p>
-					</div>	
+					{% for category,num_questions in categories.items %}
+						<div class="span2">
+							<p>
+							<button class="btn tag-button">
+								<h3>{{category}}</h3>
+								<p>{{num_questions}} questions</p>
+							</button><br>
+							</p>
+						</div>	
+					{% endfor %}
 				</div>
 			</div>
 		</div>
@@ -57,7 +35,7 @@
 			<br>
 			<div class="row">
 				<div class="span3">
-					<a class="btn btn-large btn-success" href="/questions">Start quiz</a>
+					<a class="btn btn-large btn-success" href="/quiz/c">Start quiz</a>
 				</div>
 			</div>
 		</div>

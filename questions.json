@@ -1,8 +1,8 @@
 [
  {
   "tags": [
-   "C",
-   "C++"
+   "c",
+   "c++"
   ],
   "explanation": "A null terminated string is a an array containing characters and terminated with a null character '\\0' also called NUL in ASCII.",
   "stem": "What character terminates all character array C strings?",
@@ -15,7 +15,9 @@
   "_id": 1
  },
  {
-  "tags": [],
+  "tags": [
+   "linux"
+  ],
   "explanation": "",
   "stem": "This mostly happens in time sharing systems in which the process which requires a resource is waiting for another process to finish and to release the resources, but the other process holding the resources for long time (almost for forever) and the process that requires small time slot goes on waiting. Such situation is called?",
   "key": "Starvation",

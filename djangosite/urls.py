@@ -7,6 +7,7 @@ from django.conf.urls.defaults import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'djangosite.views.about'),
+    url(r'^quiz/(?P<tag>\w+)/$', 'djangosite.views.quiz'),
     url(r'^questions$', 'djangosite.views.index'),
     url(r'^questions/(?P<qid>\d)/$', 'djangosite.views.index'),
     url(r'^new$', 'djangosite.views.new'),

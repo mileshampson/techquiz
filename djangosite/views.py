@@ -7,6 +7,7 @@ import os, simplejson
 from django.core.mail import send_mail
 import distdata.questions
 import distdata.messages
+import distdata.categories
 
 def admin(request):
     t = loader.get_template('admin.html')
@@ -14,9 +15,22 @@ def admin(request):
     c = Context(ctxdata)
     return HttpResponse(t.render(c))
 
+@never_cache
+def quiz(request, tag):
+    t = loader.get_template('quiz.html')
+    ctxdata = {}
+    question = distdata.questions.getQuestionGivenTag(tag)
+    ctxdata["tag"] = tag
+    ctxdata["question"] = question
+    ctxdata["question_json"] = simplejson.dumps(question)
+    qid = question["_id"]
+    ctxdata["qid"] = qid
+    return HttpResponse(t.render(Context(ctxdata)))
+
 def category_select(request):
     t = loader.get_template('category_select.html')
     ctxdata = {}
+    ctxdata["categories"] = distdata.categories.getData()
     c = Context(ctxdata)
     return HttpResponse(t.render(c))
 
