@@ -16,7 +16,7 @@ function displayResultAnswerCorrect() {
 	$('<h2 style="text-align:center">Correct Answer:</h2>').appendTo("#question_or_answer")
 	$('<h2 style="text-align:center">'+question.key+'</h2>').appendTo("#question_or_answer")
 	$('<p>'+question.explanation+'</p>').appendTo("#question_or_answer")
-	$('<div style="display:block;width:5em;margin-left:auto;margin-right:auto" class="alert alert-success">CORRECT!</div>').appendTo("#question_or_answer")
+	$('<div style="display:block;width:5em;margin-left:auto;margin-right:auto" class="alert alert-success">CORRECT</div>').appendTo("#question_or_answer")
 }
 
 function displayResultAnswerWrong() {
@@ -24,7 +24,7 @@ function displayResultAnswerWrong() {
 	$('<h2 style="text-align:center">Correct Answer:</h2>').appendTo("#question_or_answer")
 	$('<h2 style="text-align:center">'+question.key+'</h2>').appendTo("#question_or_answer")
 	$('<p>'+question.explanation+'</p>').appendTo("#question_or_answer")
-	$('<div style="display:block;width:5em;margin-left:auto;margin-right:auto" class="alert alert-error">INCORRET!</div>').appendTo("#question_or_answer")
+	$('<div style="display:block;width:5em;margin-left:auto;margin-right:auto" class="alert alert-error">INCORRECT</div>').appendTo("#question_or_answer")
 }
 
 function displayQuestion() {

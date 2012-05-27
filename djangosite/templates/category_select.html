@@ -1,47 +1,70 @@
 {% extends "bootstrap_base.html" %}
-{% load humanize %}
+
+{% block custom_css %}
+	<link href="/static/css/category_select.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 <div  class="container">
-	<ul class="thumbnails">
-  		<li class="span3">
-    		<a href="#" class="thumbnail">
-      		<img src="http://upload.wikimedia.org/wikipedia/en/thumb/3/39/Java_logo.svg/200px-Java_logo.svg.png" alt="">
-    		</a>
-    		<h5>Java Quiz</h5>
-      		<p>Java Programming Language Trivia</p>
-  		</li>
-  		<li class="span3">
-    		<a href="#" class="thumbnail">
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/5/54/The_C_Programming_Language_1st_edition_cover.jpg" alt="">
-    		</a>
-    		<h5>C Quiz</h5>
-      		<p>C Programming Language Trivia</p>
-  		</li>
-  		<li class="span3">
-    		<a href="#" class="thumbnail">
-      		<img src="http://upload.wikimedia.org/wikipedia/en/9/91/C_plus_plus_book.jpg" alt="">
-    		</a>
-    		<h5>C++ Quiz</h5>
-      		<p>C++ Programming Language Trivia</p>
-  		</li>  		
-  		<li class="span3">
-    		<a href="#" class="thumbnail">
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Tux.svg/200px-Tux.svg.png" alt="">
-    		</a>
-    		<h5>Linux</h5>
-      		<p>General Linux Operating System Trivia</p>
-  		</li>  		
-  		<li class="span3">
-    		<a href="#" class="thumbnail">
-      		<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Internet_map_1024.jpg/240px-Internet_map_1024.jpg" alt="">
-    		</a>
-    		<h5>Networking</h5>
-      		<p>Networking Protocols Knowledge</p>
-  		</li>  		
-	</ul>
+	<div class="row">
+		<div class="span8 well">
+			<div class="row">
+				<div class="span8">
+					<h2>Choose a category</h2>
+					<br>
+				</div>
+			</div>		
+			<div class="row">
+				<div class="span7 offset1" data-toggle="buttons-radio">
+					<div class="span2">
+						<p>
+						<button class="btn tag-button active">
+							<h3>Java</h3>
+							<p>3 questions</p>
+						</button><br>
+						</p>
+					</div>	
+					<div class="span2">
+						<p>
+						<button class="btn tag-button">
+							<h3>C</h3>
+							<p>2 questions</p>
+						</button>
+						</p>
+					</div>	
+					<div class="span2">
+						<p>
+						<button class="btn tag-button">
+							<h3>C++</h3>
+							<p>2 questions</p>
+						</button>
+						</p>
+					</div>	
+					<div class="span2">
+						<p>
+						<button class="btn tag-button">
+							<h3>Linux</h3>
+							<p>2 questions</p>
+						</button>
+						</p>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div class="span3 well">
+			<h3>Summary</h3>
+			<h4>Category: Java</h4>
+			<br>
+			<div class="row">
+				<div class="span3">
+					<a class="btn btn-large btn-success" href="/questions">Start quiz</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock %}
 
 {% block custom_javascript %}
+	<script src="/static/bootstrap/js/bootstrap-button.js"></script>
 {% endblock %}
